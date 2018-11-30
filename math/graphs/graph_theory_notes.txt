@@ -1,0 +1,212 @@
+Notes on Graph Theory
+---------------------
+
+Part 0: Sets
+------------
+Motivation: sets are the fundamental building blocks of advanced mathematics. All
+interesting math[1] begins with sets, and graph theory is no different
+
+DEFINITION: Set
+The simplest definition of a set is simply "a collection of entities", and this
+definition will serve pretty well for our purposes here. 
+Some further details:
+* Set membership is boolean: Any entity either belongs to some set S, or it does
+not. It is not "sort of" in the set, and it is not in the set more than once.
+We can ask about any set S, "is the entity E a member of S?", and we can
+ask about any entity E, "does S contain E?". (these questions are equivalent,
+only the focus differs)
+* An "entity" here means anything that we can talk about - any noun, or any
+named or described object. For example, a set might contain Bob, nothingness,
+and all things which can be characterized adequately in exactly seventeen words.
+* A set imposes no ordering on its members. We can ask "is my cat a member of
+the set S?", but we cannot ask "what is the first member of the set S?". This
+being said, objects which have an inherent ordering obviously do not lose that
+ordering as members of a set. "What is the least integer in the set of odd
+primes?" is a perfectly legitimate question.
+* A set can be viewed as a property, which an object either has (is a member of
+that set) or does not have (is not a member of that set).
+
+DEFINITION: Null set/Empty set
+A set which has no members at all is called a "null" or "empty" set.
+
+DEFINITION: Subset
+Given sets A and B, we say that A is a subset of B iff[2] every member of A is
+also a member of B, and we can write A⊂ B
+* Example: if A = {1,2,3} and B = {1,2,3,4}, A⊂ B
+
+DEFINITION: Superset
+If A is a subset of B, then B is a superset of A and we can write A⊃ B 
+
+DEFINITION: Set equality
+We say that set A = set B iff every element of A is also an element of B.
+* Note that this is equivalent to saying that A = B iff A ⊂ B and B⊂ A. This may
+be worth a proof. If you think it is, prove it. 
+
+THEOREM: Any null set is equal to any other null set
+Proof: Let E and F be empty sets. Note that there is no member of E which is not
+also a member of F, and vice versa. (That is E⊂ F and F⊂ E)
+Discussion: Based on this proof, we will refer to "the" empty set rather than "an" empty
+set, and we can use the symbol ∅ to denote this set.
+
+DEFINITION: Complement
+The complement of a set S with respect to some set U is the set
+S'={s: s in U and s not in S}. That is, the complement of S wrt U contains every
+element of U that is not contained in S. 
+
+[1] by "interesting math" I mean mathematics as the study of structures rather
+than simply a collection of techniques for efficient computation of numerical
+values. Not to denigrate the latter, I'm just more interested in the former.
+[2] "iff" is short for "if and only if". It is a very useful bit of jargon.
+
+
+Part 1: Fundamentals of Graphs (Definitions)
+--------------------------------------------
+Definition: Graph
+A graph is a mathematical structure consisting of two sets, denoted
+V and E. V is a set of "nodes" or "vertices", and E is a set of "edges", or
+connections between the vertices.
+* The "vertices" of a graph most immediately stand for the "dots" in our
+dots-and-lines graphs. However, they can represent almost any objects whose
+relationships we are interested in modeling. 
+* By convention, V is considered to be non-empty.
+* An "edge" is a set of two vertices, v1 and v2, appearing in the graph's vertex
+set. The graph's edge set E is a set of such pairs, eg E={{v1, v2}, {v2, v3},
+{v3, v1}}.
+* We use the lower-case "v" and "e" to denote the vertex count and edge count of
+a given graph. For example, we might say "consider a graph G, with v>3" to
+indicat that we mean a graph having more than three vertices.
+
+Terminology:
+* Given a graph G = {V, E}, with v1, v2 ⊂  V, if {v1, v2} ⊂ E, then we say that
+v1 and v2 are "adjacent" in that graph.
+* If v1 and v2 are adjacent, then we say the edge {v1, v2} is incident to v1
+(and to v2) and likewise v1 and v2 are both incident to {v1, v2}.[3]
+* Two graphs are equal if their edge sets and their vertex sets are equal.
+* Two graphs are isomorphic if there is a way to rename the vertices of one of
+them so as to make them equal.
+
+Named Graphs:
+* Given graph G = {V, E}, of v=n, with V={v1, v2, ..., vn}, we say that G is a
+Cyclical graph on n nodes iff E={{v1, v2}, {v2, v3}, ..., {vn-1, vn}, {vn, v1}}.
+We denote this graph as Kn - for example, C5 is the cyclical graph on five
+nodes.
+* Given graph G = {V, E}, v=n, we say that G is the Complete graph on n nodes
+iff for all pairs v1, v2⊂  V, v1 != v2, the edge {v1, v2} ⊂ E. Write Kn.
+* A graph G with n nodes is the Null graph Nn if its edge set is empty.
+
+The Utility Graph:
+* The utility graph UG has V = {A,B,C,X,Y,Z} and E = {(A, X), (A, Y), (A, Z),
+(B, X), (B, Y), (B, Z), (C, X), (C, Y), (C, Z)}. This graph is named for an old
+newspaper puzzle posed by Henry Dudeney in the early part of the XXth century.
+(see exercises) 
+
+Theorem: The complete graph Kn has n(n-1)/2 edges.
+Proof:
+Consider node v1. By definition, it is connected to every other node in V, hence
+it is incident to n-1 edges. The same holds for every vertex in V, hence we
+count n(n-1) "ends" of edges. However, each edge has two ends, so there are
+n(n-1)/2 total edges.
+
+Corollary: No simple graph with v=n can have more than n(n-1)/2 edges.
+Proof:
+By definition, all possible edges for n vertices appear in Kn. Therefore, no
+edges can be added, and the edge count for Kn is the maximum number of edges for
+a graph of n vertices.
+
+DEFINITION: Complement
+The complement of a graph G is the graph whose edge set is the complement of
+G's, with respect to the complete graph on G's vertex set.[4]
+
+DEFINITION: Subgraph
+A graph G is a subgraph of H if the vertex set of G is a subset of the vertex
+set of H and the edge set of G is a subset of vertex set of H.
+* We assume that G is a legitimate graph, specifically that all of the vertices
+appearching in its edge set also appear in its vertex set. 
+* If G is a subgraph of H, H is a supergraph of G
+
+DEFINITION: Extension/Contraction
+An extension of a graph G is formed by adding a new node w to V(G), and then
+removing an edge (v, w) from E(G) and replacing it with edges (v, x) and (x, w).
+That is, we add a new node to the graph, along some already existing edge. 
+* Formally speaking, we consider a graph an extension of G if we repeat this
+process zero or more times. That is, any graph is an extension of itself.
+* If H is an extension of G, then G is a contraction of H. 
+
+DEFINITION: Degree
+The degree of a vertex v is the number of edges incident to it. 
+
+DEFINITION: Component
+A component of a graph consists of the set of nodes "reachable from" some
+starting point vs.
+* For example, the graph G = {{A,B,C,D}, {(A, B), (C, D)}} has
+two components: A and B form one, and C and D form another.
+
+[3] I find it odd that there is no notation expressing "adjacency" and
+"incidence" in a graph, but as far as I know, there is not.
+[4] Note the slightly loose usage here: clearly I mean "with respect to the EDGE
+SET OF the complete graph on G's vertex set. Sometimes we get a little sloppy. 
+
+
+
+Part 2: Isomorphism
+
+DEFINITION: Isomorphism
+("isomorphism" has already been mentioned, here we try to formalize the notion)
+A graph G is isomorphic to another graph H iff there exists a function F mapping
+the vertices of G on to the vertices of H1 so as to produce a graph G' equal to
+H.
+* In other words, if we can make the graphs equal by renaming their vertices,
+then we say that they are isomorphic
+* Isomorphism allows us to consider the abstract stucture of a graph without
+worrying about what it represents. This is a common and useful technique in
+mathematics and in computer science,  leading in the latter to general data
+structures and algorithms.
+
+
+Some properties of a graph are preserved under isomorphism. That is, if a graph
+has a certain property, all graphs isomorphic to that graph share it. Some of
+these properties are:
+
+1. Vertex count
+2. Edge count
+3. Distribution of degrees
+4. Component count
+
+The first two are obvious from the definition of isomorphism. Since the
+isomorphic graph G' is identical to H, it has the identical vertex and edge
+sets. Since the isomorphism is produced by a renaming of vertices only, the
+counts of both V and E must be identical between G and G'.
+
+The second and third are less intuitive. "Distribution of degrees" is simply a
+count of the number of nodes in G with degree 0, 1, 2, etc. Property 3 tells us
+that if G has n nodes of degree d, then any graph isomorphic to G will also have
+n nodes of degree d. Similarly, if G has n components, then any graph isomorphic
+to G will also have n components. Again, this proceeds from the notion that an
+isomorphism is demonstrated by a simple renaming of nodes, which does not change
+the structure of the graph, and emphasizes the identity of structure between
+isomorphic graphs.
+
+Part 3: Planar Graphs
+DEFINITION: Planar graph
+A graph is planar if it can be drawn on a plane without edge-crossings. If it
+cannot be drawn on a plane without at least one edge-crossing, it is non-planar.
+* Note that planarity or non-planarity are properties preserved under
+isomorphism. 
+
+Theorem: a subgraph of a planar graph is planar.
+Proof (intuitive): Suppose that G is a planar graph. Then any subgraph of G is
+either identical to G itself (and still planar) or has had some edges removed
+from it.
+Crucially, we do not add any notes when taking a subgraph. 
+
+Corollary: a supergraph of a non-planar graph is non-planar.
+Proof (intuitive): Similarly to the previous, a supergraph of G has the edge set
+of G, plus maybe some more edges. If G is non-planar, then adding more edges
+does not change that.
+
+Theorem: UG is non-planar
+(to prove)
+
+Theorem: K5 is non-planar
+(to prove)
+

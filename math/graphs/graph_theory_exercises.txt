@@ -1,0 +1,36 @@
+Graph Theory Exercises:
+
+Note: I will be fairly informal in notation in these exercises. Some standard
+notation will be mixed in with idiosyncratic and ad-hoc notation. Please let me
+know what parts are confusing. 
+
+Part 0:
+In the following exercises, let A = {1,2}, B = {1,2,3}, C = {2,4,6}, D = {all of
+the integers}, E = {}
+
+#: For each of the listed sets A, B, C, D, E, name the sets (if any) that they
+ are subsets of.
+#: For each of the listed sets, describe a new set that that set is a subset of.
+#: Prove that E is a subset of every set.
+
+Part 1:
+# Draw examples of each of the named graphs described in Part 1. Convince
+yourself that the names make sense.
+# Devise some other general graphs which might deserve names. Try to describe
+their edge sets in terms of a vertex set V={v1, v2, ..., vn}.
+# Consider the number of edges in C3, C4, etc. It should be obvious that for any
+Cn, e=n, if n>2. Why do we need to make this exception?
+# Try to characterize your new general graphs' edge counts in terms of their
+vertex counts.
+# Characterize the complement of the Null graph Nn and of the complete graph Kn
+# Characterize the complement of the cyclical graph Cn.
+# Describe the process by which we can produce a contraction of a graph. 
+# Consider the following problem: There are three utilities (gas, water, and
+electric) and three houses (A, B, and C) to be connected to those utilities. For
+technical reasons (reasons of plot, if you like) connections are not allowed to
+cross. Try to satisfy all three customers by connecting each of them to all
+three utilities. Explain your results. 
+
+Part 2:
+# Prove that if G is isomorphic to H, then the complement of G is isomorphic to
+the complement of H. 
