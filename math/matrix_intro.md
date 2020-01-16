@@ -1,5 +1,5 @@
-An Overview of Matrices And Their Multiplication 
-(Review of Math Club, Jan 15 2020)
+## An Overview of Matrices And Their Multiplication
+### (Review of Math Club, Jan 15 2020)
 
 Definition: A matrix is a rectangular array of numbers. In general, we say
 M is an "i by j matrix" if M has i rows and j columns, and we refer to the 
@@ -39,7 +39,7 @@ VW = V1 * W1 + V2 * W2 + ... + V(n-1) * W(n-1) + Vn * Wn
 
 Important: Notice that this produces a single number, *not* a new vector. 
 
-So if V = (1,2,3) and W = (2,3,4) then VW = 1*2 + 2*3 + 3*4 = 144.
+So if V = (1,2,3) and W = (2,3,4) then VW = (1 * 2) + (2 * 3) + (3 * 4) = 144.
 
 Returning to matrices, we multiply two matrices A and B together by taking the 
 rows of A and the columns of B as vectors, to produce a new matrix C, where each 
@@ -47,21 +47,27 @@ element Cij is the product ("linear combination") of the ith row of A and the jt
 column of B. 
 
 That is, if A = 
-| 1 | 2 |
+
+| 1 | 2|
+| - | - |
 | 3 | 4 |
+
 
 and B = 
 | 2 | 3 | 
+| - | - |
 | 4 | 5 |
 
 then C = 
 
 | 1 * 2 + 2 * 4 | 1 * 2 + 2 * 5 |
+| -------------- | ------------ |
 | 3 * 2 + 4 * 4 | 3 * 4 + 4 * 5 |
 
 which is equal to 
 
 | 10 | 12 |
+| - | - |
 | 22 | 32 |
 
 
@@ -70,12 +76,14 @@ Compatibility: Not all matrices can be multiplied together. Consider the problem
 of trying to multiply a 2 X 4 matrix by a 3 X 2 matrix. Concretely, consider A =
 
 | 1 | 2 | 3 | 4 | 
+| - | - | - | - |
 | 2 | 3 | 4 | 5 |
 
 and B = 
 
-| 3 | 5 | 
-| 5 | 7 | 
+| 3 | 5 |
+| - | - |
+| 5 | 7 |
 | 7 | 9 | 
 
 If we tried to multiply A * B, we would have to take the linear combination of
@@ -104,9 +112,5 @@ same matrix M. If you are interested in practicing proofs, you can try proving t
 (a) I * M or M * I always has the same dimensions as M and 
 (b) IMij is equal to M ij for all i and j. (that is, every element of IM is the same
 as the corresponding element in M)
-
-
-
-
 
 
